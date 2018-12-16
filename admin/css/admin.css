@@ -1,0 +1,113 @@
+
+.admin-content li, .admin-content a{
+    list-style: none;
+    color: #000000;
+}
+
+
+.admin-content-sidebar li{
+    margin-top:30px;
+    
+}
+.admin-content-sidebar li a{
+    text-decoration: none;
+}
+
+.admin-content-content{
+    min-width: auto;
+}
+.admin-content{
+    min-height: 500px;
+}
+
+.content{
+    min-height: 500px;
+}
+
+.head nav{
+    background-color: #4c4c4c !important;
+    margin-top:0px;
+   
+}
+
+.admin-blankpage {
+    background-color: #cccccc !important;
+}
+
+.admin-blankpage li a:hover{
+    background-color: white !important;
+}
+
+.menu{
+    background-color: white;
+}
+
+.menu li{
+    
+    display: inline-block;
+    margin-top: 5px;
+    padding: 5px;
+}
+.menu li a{
+    color:#cccccc;
+    font-size:15px;
+}
+
+.content-head .h{
+    margin:15px;
+   
+}
+.chart {
+    display: inline-block;
+}
+.h{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: white;
+}
+
+.head-menu{
+    padding: 10px 50px 10px 0px;
+}
+.head-menu > .head-img > img{
+    border-radius: 50px;
+}
+.head-menu .dropdown{
+    display: inline-block;
+
+}   
+.head-menu .dropdown a:hover{
+    text-decoration: none;
+}
+
+.head-menu > .head-img{
+    display: inline;
+    margin-right: 10px;
+}
+
+.admin-content-content .head{
+    background-color: #666666;
+}
+
+.content{
+    background-color: #e5e5e5;
+}
+.content .content-content{
+    background-color: white ;
+}
+
+.footer{
+    background-color: #4c4c4c;
+    padding: 10px;
+}
+
+.table > thead > tr > th,.table > tbody > tr > td{
+    text-align: center;
+}
+.content-content{
+   margin:10px;;
+}
+
+
+.content .content-content h2{
+    padding: 10px;
+}
