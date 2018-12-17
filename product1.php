@@ -149,12 +149,34 @@ ul.cols > li {
                        
                     <ul class="cols cols-5 ">
                     <?php
-                        $id=$_GET['id'];
-                        $sql=" SELECT * FROM sanpham WHERE sanpham.NhaSanXuatId=$id";
-                        $result1 = mysqli_query($conn, $sql);
-                        while($row = mysqli_fetch_assoc($result1))
-                        {
-                    
+                    $limit = 10;
+                    $id=$_GET["id"];
+                    $current_page = 1;
+                    if (isset($_GET["page"])) {
+                        $current_page = $_GET["page"];
+                    }
+
+                    $next_page = $current_page + 1;
+                    $prev_page = $current_page - 1;
+
+                    $c_sql = "select count(*) as num_rows from sanpham WHERE sanpham.NhaSanXuatId=$id";
+                    $c_rs = load($c_sql);
+                    $c_row = $c_rs->fetch_assoc();
+                    $num_rows = $c_row["num_rows"];
+                    $num_pages = ceil($num_rows / $limit);
+
+                    if ($current_page < 1 || $current_page > $num_pages) {
+                        $current_page = 1;
+                    }
+                    // $id=$_GET["id"];
+                        // $sql=" SELECT * FROM sanpham WHERE sanpham.NhaSanXuatId=$id";
+                        // $result1 = mysqli_query($conn, $sql);
+                        // while($row = mysqli_fetch_assoc($result1))
+                    // $offset = 0;
+                    $offset = ($current_page - 1) * $limit;
+                    $sql = "SELECT * FROM sanpham WHERE sanpham.NhaSanXuatId=$id  limit $offset, $limit";
+                    $rs = load($sql);
+                    while ($row = $rs->fetch_assoc()):             
                     ?>
 			            <li class="product">			    
                         <a  href="product-detail.php?id=<?=$row["Id"]?>&nsx=<?=$row["NhaSanXuatId"]?>">
@@ -178,7 +200,7 @@ ul.cols > li {
 				        <div class="clear"></div>				
                         </li>		
                     <?php
-                        }
+                        endwhile;
                     ?>				
 		            </ul>
                            
@@ -187,26 +209,35 @@ ul.cols > li {
                 <!-- kết thúc thẻ row -->
 
                 <!-- Phân trang -->
-                <div class="phantrang">
-                    <nav class="numbering text-right">
-                        <ul class="pagination ">
-                            <li>
-                                <a href="#" aria-label="Previous">
-                                    <span aria-hidden="true">«</span>
-                                </a>
-                            </li>
-                            <li><a href="#">1<span class="sr-only">(current)</span></a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li>
-                                <a href="#" aria-label="Next">
-                                    <span aria-hidden="true">»</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+                <div class="phantrang text-right">
+                <ul class="pagination">
+					<li class="disabled">
+						<a href="#" aria-label="Previous">
+							<span aria-hidden="true">«</span>
+						</a>
+					</li>
+					<?php for ($i = 1; $i <= $num_pages; $i++) : ?>
+						<li class="<?php if ($i == $current_page) echo 'active' ?>">
+							<a href="?page=<?= $i ?>&id=<?php echo $id?>"><?= $i ?></a>
+						</li>
+					<?php endfor; ?>
+
+					<!-- <li class="active">
+						<a href="#">
+							1
+							<span class="sr-only">(current)</span>
+						</a>
+					</li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">5</a></li> -->
+					<li>
+						<a href="#" aria-label="Next">
+							<span aria-hidden="true">»</span>
+						</a>
+					</li>
+				</ul>    
                 </div>
                 <!-- kết thúc thẻ phân trang -->
             </div>

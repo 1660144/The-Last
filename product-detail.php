@@ -3,7 +3,13 @@
     session_start();
     if (!isset($_SESSION["dang_nhap_chua"])) {
 		$_SESSION["dang_nhap_chua"] = 0;
-	}
+    }
+    $Id = $_REQUEST["id"];
+
+    $sql = "Update SanPham Set LuotXem = LuotXem + 1 Where Id=$Id";
+    $rs = write($sql);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -151,7 +157,7 @@ ul.cols > li {
                 <ul class="cols cols-5 ">
                     <?php
                         $id = $_GET["id"];
-                        $sql = "SELECT * FROM sanpham as sp1 join sanpham as sp2 on sp1.LoaiSP = sp2.LoaiSP WHERE sp1.Id = $id limit 0,5";
+                        $sql = "SELECT * FROM sanpham as sp1 join sanpham as sp2 on sp1.LoaiSP = sp2.LoaiSP WHERE sp1.Id = $id ORDER BY RAND() limit 0,5";
                         $result = mysqli_query($conn, $sql);  
                                                   
                         while($row = mysqli_fetch_array($result))
@@ -224,113 +230,9 @@ ul.cols > li {
         </div><br><br>
         <!-- kết thúc content -->
         <div class="info">
-                <div class="jumbotron text-left">
-                    <div class="row ">
-                        <div class="col-sm-3 col-xs-3">
-                            <ul class="diachi">
-                                <p>Liên hệ</p>
-                                <li>
-                                   
-                                    <span>123 District 1</span>
-                                </li>
-                                <li>
-                                   
-                                    <span> <a href="#">thelast@gmail.com</a></span>
-                                </li>
-                                <li>
-                                   
-                                    <i>123 456 789</i>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-sm-3 col-xs-3">
-                            <ul class="thongtin">
-                                <p>Thông tin hỗ trợ</p>
-                                <li>
-                                    <a href="#">Giới thiệu</a>
-                                </li>
-                                <li>
-                                    <a href="#">Chính sách bản hành</a>
-                                </li>
-                                <li>
-                                    <a href="#">Tuyển dụng</a>
-                                </li>
-                                <li>
-                                    <a href="#">Mua hàng - thanh toán Online</a>
-                                </li>
-                                <a href="#" class="atm-visa" title="Thẻ Visa">
-                                    <img src="img/atm-visa-v/visa.png">
-                                </a>
-                                <a href="#" class="atm-visa" title="Thẻ ZaloPay">
-                                    <img src="img/atm-visa-v/zalopay.png">
-                                </a>
-    
-                                <a href="#" class="atm-visa" title="Thẻ Vietinbank">
-                                    <img src="img/atm-visa-v/vietibank.png">
-                                </a>
-                                <a href="#" class="atm-visa" title="Trả Góp">
-                                    <img src="img/atm-visa-v/tragop.png">
-                                </a>
-                            </ul>
-                        </div>
-                        <div class="col-sm-3 col-xs-3">
-                            <ul class="thongtin">
-                                <p>Danh Mục</p>
-                                <li>
-                                    <a href="#">
-                                        ĐIỆN THOẠI</a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        
-                                        TABLET
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        PHỤ KIỆN</a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        LAPTOP</a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        ÂM THANH</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-sm-3 col-xs-3">
-                            <ul class="thongtin">
-                                <p>Cá Nhân</p>
-                                <li>
-                                    <a href="product.html">
-                                        Cửa hàng</a>
-                                </li>
-                                <li>
-                                    <a href="cart.html">
-                                        
-                                        Giỏ hàng của tôi
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="login.html">
-                                        Đăng nhập</a>
-                                </li>
-                                <li>
-                                    <a href="registered.html">
-                                        Đăng Ký Tài Khoản</a>
-                                </li>
-                                <li>
-                                    <a href="http://facebook.com"><i class="fa fa-facebook-square" style="font-size:25px"></i></a>
-                                    <a href="http://twitter.com"><i class="fa fa-twitter-square" style="font-size:25px"></i></a>
-                                    <a href="http://tumblr.com"><i class="fa fa-tumblr-square" style="font-size:25px"></i></a>
-                                    <a href="http://instagram.com"><i class="fa fa-instagram" style="font-size:25px"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+               <?php
+                require_once "infor.php"?>
+               ?>
             </div>
             <!-- kết thúc thẻ thông tin liên hệ -->
 

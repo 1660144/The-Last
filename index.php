@@ -67,13 +67,13 @@ ul.cols > li {
 </head>
 
 <body>
-    <div class="page ">
+    <div class="page">
         <div class="head">
-
-                   <?php
-                    require_once "head.php";
-                   ?>          
-        </div>
+        <?php
+                require_once "head.php";
+            ?>  
+        
+       </div>
 
         <div class="search">
              <?php
@@ -137,13 +137,12 @@ ul.cols > li {
 		            <ul class="cols cols-5 ">
                     <?php
                         $sql2 = "select * from sanpham order by soluong desc limit 0,10";
-                        $result2 = mysqli_query($conn, $sql2);  
-                                                  
+                            $result2 = mysqli_query($conn, $sql2);                                          
                         while($row2 = mysqli_fetch_array($result2))
                         {                    
                     ?>
 			            <li class="product">			    
-                            <a href="product-detail.php?id=<?=$row2["Id"]?>">
+                            <a href="product-detail.php?id=<?=$row2["Id"]?>&nsx=<?=$row2["NhaSanXuatId"]?>">
                                             <div class="panel-group">
                                                 <div class="panel-heading">
                                                     <img src="<?=$row2["HinhAnh"]?>" class="img-responsive"
@@ -184,7 +183,7 @@ ul.cols > li {
                             $id = $row2["Id"];      
                     ?>
 			            <li class="product">			    
-                            <a href="product-detail.php?id=<?php echo $id;?>">
+                            <a href="product-detail.php?id=<?php echo $id;?>&nsx=<?=$row2["NhaSanXuatId"]?>">
                                             <div class="panel-group">
                                                 <div class="panel-heading">
                                                     <img src="<?=$row2["HinhAnh"]?>" class="img-responsive"
@@ -224,13 +223,14 @@ ul.cols > li {
         require_once "footer.php";
     ?>
     </div>
-    <!-- <script>
+             </div>
+     <script>
         $('.navbar .dropdown').hover(function () {
             $(this).find('.dropdown-menu').first().stop(true, true).slideDown(150);
         }, function () {
             $(this).find('.dropdown-menu').first().stop(true, true).slideUp(105)
         });
-    </script> -->
+    </script>
 
 </body>
 </html>

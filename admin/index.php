@@ -45,7 +45,7 @@
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin</a>
                                     <span class="caret"></span>
                                     <ul class="dropdown-menu">
-                                            <li><a href="#">Logout</a></li>  
+                                            <li><a href="/The-last/index.php">Logout</a></li>  
                                     </ul>
                                 </div>
                             </div>

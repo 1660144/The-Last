@@ -5,7 +5,7 @@
                         <i>Call: 0123 456 789</i>
                     </div>
                     <div class="height col-sm-4">
-                        <a href="#" style="font-size:45px; color:black"><b>MOBILE STORE</b></a>
+                        <a href="index.php" style="font-size:45px; color:black"><b>MOBILE STORE</b></a>
                     </div>
                     <div class="col-sm-4">
                         <div class="search">

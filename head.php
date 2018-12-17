@@ -2,8 +2,7 @@
 require_once "./lib/db.php";
     
 ?>
-
-<div class="row text-center">
+<div class="container-fluid">
     <ul class="nav navbar-nav navbar-right">
 
         <?php 
@@ -36,6 +35,7 @@ require_once "./lib/db.php";
         <?php
         } 
         ?>
+    </ul>
+    
+    </div>
 
-	</ul>
-</div>

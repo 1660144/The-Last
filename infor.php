@@ -92,21 +92,21 @@
                     <ul class="thongtin">
                         <p>Cá Nhân</p>
                         <li>
-                            <a href="product.html">
+                            <a href="store.php">
                                 Cửa hàng</a>
                         </li>
                         <li>
-                            <a href="cart.html">
+                            <a href="cart.php">
 
                                 Giỏ hàng của tôi
                             </a>
                         </li>
                         <li>
-                            <a href="login.html">
+                            <a href="login.php">
                                 Đăng nhập</a>
                         </li>
                         <li>
-                            <a href="registered.html">
+                            <a href="registered.php">
                                 Đăng Ký Tài Khoản</a>
                         </li>
                         <li>

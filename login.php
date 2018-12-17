@@ -12,17 +12,28 @@ require_once "./lib/db.php";
         $password = $_POST["password"];
 
         $sql = "select * from taikhoan where TenDangNhap = '$username' and MatKhau = '$password'";
-       // $result = mysqli_query($conn, $sql);      
-       $rs = load($sql);
-		if ($rs->num_rows > 0) {
-			$_SESSION["current_user"] = $rs->fetch_object();
-			$_SESSION["dang_nhap_chua"] = 1;
-			header("Location: index.php");
+        $result = mysqli_query($conn, $sql);      
+        $rs = load($sql);
+        $num_row = mysqli_num_rows($result);
+
+		if ($num_row > 0) {
+           
+            if($username == "admin")
+            {
+                header("Location: ./admin/index.php");
+            }
+            else
+            {
+                $_SESSION["current_user"] = $rs->fetch_object();
+                $_SESSION["dang_nhap_chua"] = 1;
+                header("Location: index.php");
+            }
         } 
         else {
 			echo '<script language="javascript">';
             echo 'alert("Tài khoản không tồn tại! Vui lòng đăng nhập lại")';
             echo '</script>';
+           
 		}
     }
 ?>

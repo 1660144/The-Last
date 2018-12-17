@@ -1,6 +1,10 @@
 .head{  
     margin-bottom:0px;
-   
+   border-bottom: 1px solid #999;
+
+}
+.head .row{
+   padding-right:0px;
 }
 
 .head ul li a{

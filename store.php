@@ -141,9 +141,9 @@ ul.cols > li {
                     </div>       
                     <div class="col-sm-9 ">                
                     <ul class="cols cols-5 ">
-                    <?php    
-                        $limit = 8;
-                        $lsp=$_GET['idlsp'];
+                    <?php            
+                        $limit = 15;       
+                       
 						$current_page = 1;
 						if (isset($_GET["page"])) {
 							$current_page = $_GET["page"];
@@ -152,7 +152,7 @@ ul.cols > li {
 						$next_page = $current_page + 1;
 						$prev_page = $current_page - 1;
 
-						$c_sql = "select count(*) as num_rows from sanpham WHERE sanpham.LoaiSP=$lsp";
+						$c_sql = "select count(*) as num_rows from sanpham";
 						$c_rs = load($c_sql);
 						$c_row = $c_rs->fetch_assoc();
 						$num_rows = $c_row["num_rows"];
@@ -164,7 +164,7 @@ ul.cols > li {
 
 						// $offset = 0;
 						$offset = ($current_page - 1) * $limit;
-						$sql = "SELECT * FROM sanpham WHERE sanpham.LoaiSP=$lsp  ORDER BY RAND()  limit $offset, $limit";
+						$sql = "SELECT * FROM sanpham  ORDER BY RAND()  limit $offset, $limit";
 						$rs = load($sql);
 						while ($row = $rs->fetch_assoc()) :
                         // $lsp=$_GET['idlsp'];
@@ -212,7 +212,7 @@ ul.cols > li {
 					</li>
 					<?php for ($i = 1; $i <= $num_pages; $i++) : ?>
 						<li class="<?php if ($i == $current_page) echo 'active' ?>">
-							<a href="?page=<?= $i ?>&idlsp=<?php echo $lsp?>"><?= $i ?></a>
+							<a href="?page=<?= $i ?>"><?= $i ?></a>
 						</li>
 					<?php endfor; ?>
 
@@ -231,7 +231,26 @@ ul.cols > li {
 							<span aria-hidden="true">»</span>
 						</a>
 					</li>
-				</ul>                           
+				</ul>         
+                    <!-- <nav class="numbering text-right">
+                        <ul class="pagination ">
+                            <li>
+                                <a href="#" aria-label="Previous">
+                                    <span aria-hidden="true">«</span>
+                                </a>
+                            </li>
+                            <li><a href="#">1<span class="sr-only">(current)</span></a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li>
+                                <a href="#" aria-label="Next">
+                                    <span aria-hidden="true">»</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav> -->
                 </div>
                 <!-- kết thúc thẻ phân trang -->
             </div>
