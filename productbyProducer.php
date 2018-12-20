@@ -9,7 +9,7 @@
 <html lang="en">
 
 <head>
-    <title>Trang Chủ</title>
+    <title>Sản PhẩmTheo Nhà Sản Xuất</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/page.css">
@@ -105,7 +105,7 @@ ul.cols > li {
                                          $id = $row["MaLoaiSanPham"];
                                          
                                 ?>
-                                <li><a href="product.php?idlsp=<?php echo $id;?>">
+                                <li><a href="productbyCat.php?idlsp=<?php echo $id;?>">
                                 <?=$row["TenLoaiSanPham"]?>
                                 
                             </a></li>  
@@ -124,7 +124,7 @@ ul.cols > li {
                                         {
                                     ?>
                                     <li>
-                                        <a href="product1.php?id=<?=$row1["MaHang"]?>"><i class="fa fa-angle-right"></i>
+                                        <a href="productbyProducer.php?id=<?=$row1["MaHang"]?>"><i class="fa fa-angle-right"></i>
                                             <?=$row1["TenHang"]?>
                                         </a>
                                     </li>

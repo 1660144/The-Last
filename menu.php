@@ -27,7 +27,7 @@
                                       
                             ?>
                             <li class="dropdown">                              
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="product.php?id=<?php echo $id;?>">                
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="productbyCat.php?id=<?php echo $id;?>">                
                                   <?=$row["TenLoaiSanPham"]?>
                                   
                                     <span class="caret"></span>
@@ -39,7 +39,7 @@
                                         while($row1 = mysqli_fetch_assoc($result1))
                                         {
                                     ?>                                
-                                    <li><a href="product1.php?id=<?=$row1["MaHang"]?>"><?=$row1["TenHang"]?></a></li>                                    
+                                    <li><a href="productbyProducer.php?id=<?=$row1["MaHang"]?>"><?=$row1["TenHang"]?></a></li>                                    
                                     <?php
                                         }
                                     ?>

@@ -59,7 +59,7 @@
                             while($row = mysqli_fetch_array($result))
                             {                                                     
                         ?>
-                        <li><a href="product.php?idlsp=<?php echo $row['MaLoaiSanPham'];?>">
+                        <li><a href="productbyCat.php?idlsp=<?php echo $row['MaLoaiSanPham'];?>">
                          <?php echo $row['TenLoaiSanPham'];?></a> <li>
                             <?php
                             }
