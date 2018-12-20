@@ -37,18 +37,8 @@
                 <div class="col-sm-10">
                     <div class="admin-content-content">
                         <div class="head">
-                            <div class="head-menu text-right">
-                                <div class="head-img">
-                                    <img src="img/ava.jpg" style="width: 50px;">
-                                </div>
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin</a>
-                                    <span class="caret"></span>
-                                    <ul class="dropdown-menu">
-                                            <li><a href="#">Logout</a></li>  
-                                    </ul>
-                                </div>
-                            </div>
+                        <?php require_once "head.php"
+                            ?>
                         </div>
                         <!-- kết thúc thẻ head -->
                         <div class="menu container-fluid">
@@ -67,8 +57,7 @@
                         </div>
                         <!-- kết thúc thẻ content -->
                         <div class="content">
-                            <div class="content-head container">
-                            <div class="content container">
+                            <div class="content-head">
                             <div class="content-content">
                                 <h2>Sản Phẩm</h2>
                                 <hr>                      
@@ -79,8 +68,7 @@
                                             <th>Tên Sản Phẩm</th>
                                             <th>Hình Ảnh</th>
                                             <th>Giá</th>
-                                            <th>Ngày Nhập</th>
-                                            <th>Mô tả</th>
+                                            <th>Ngày Nhập</th>                                            
                                             <th>Số lượng bán</th>
                                             <th>Loại sản phẩm</th>
                                             <th>Hãng sản xuất</th>
@@ -101,32 +89,31 @@
                                             <td><img src="<?=$row["HinhAnh"]?>" style="width:30%;"></td>
                                             <td><?=$row["Gia"]?></td>
                                             <td><?=$row["NgayNhap"]?></td>
-                                            <td><?=$row["MoTa"]?></td>
+                                           
                                             <td><?=$row["SoLuong"]?></td>
                                             <td><?=$row["LoaiSP"]?></td>
                                             <td><?=$row["NhaSanXuatId"]?></td>
                                             <td>
-                                                <a class="btn  btn-dafault btn-xs" href="category_edit.php?id=<?=$row["Id"]?>" role="button">
-                                                <i class="glyphicon glyphicon-pencil" style="width:15px;">
-                                            </a>
+                                                <a class="btn btn-default btn-xs" href="category_edit.php?id=<?=$row["Id"]?>" >
+                                                    <i class="fa fa-pencil" aria-hidden="true" style="width:15px;color:blue"></i>
+                                                </a>
                                             </td>
                                             <td>
-                                                <a class="btn btn-default btn-xs" href="category_delete.php?id=<?$row["Id"]?>" role="button">
-                                   <i class="" style="width:15px;"></i></a>
+                                            <a class="btn btn-default btn-xs" href="category_edit.php?id=<?=$row["Id"]?>" >
+                                                    <i class="fa fa-times" aria-hidden="true" style="width:15px;color:red"></i>
+                                                </a>
                                             </td>
-                                            <td>
-                                                <a class="btn btn-default btn-xs" href="category_indsert.php?id=<?=$row["Id"]?>">
-                                            <i class="" style="width:15px;"></i></a>
-                                            </td>
+                                          
                                         </tr>
                                     <?php
                                     }                               
                                     ?>                                    
                                     </tbody>                      
                                 </table>
+                            
+                        </div>
+                        
                             </div>
-                        </div>
-                        </div>
                         </div>
                     </div>
                 </div>

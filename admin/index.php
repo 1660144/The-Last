@@ -37,18 +37,8 @@
                 <div class="col-sm-10">
                     <div class="admin-content-content">
                         <div class="head">
-                            <div class="head-menu text-right">
-                                <div class="head-img">
-                                    <img src="img/ava.jpg" style="width: 50px;">
-                                </div>
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin</a>
-                                    <span class="caret"></span>
-                                    <ul class="dropdown-menu">
-                                            <li><a href="/The-last/index.php">Logout</a></li>  
-                                    </ul>
-                                </div>
-                            </div>
+                            <?php require_once "head.php"
+                            ?>
                         </div>
                         <!-- kết thúc thẻ head -->
                         <div class="menu container-fluid">
