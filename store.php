@@ -267,13 +267,7 @@ ul.cols > li {
             <p style="color:white">&copy; 2018 MOBILE STORE | Design by team The Last</p>
         </footer>
     </div>
-    <script>
-        $('.navbar .dropdown').hover(function () {
-            $(this).find('.dropdown-menu').first().stop(true, true).slideDown(150);
-        }, function () {
-            $(this).find('.dropdown-menu').first().stop(true, true).slideUp(105)
-        });
-    </script>
+  
 </body>
 
 </html>

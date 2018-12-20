@@ -9,7 +9,7 @@ require_once "./lib/db.php";
             if ($_SESSION["dang_nhap_chua"] == 0) 
             {			
         ?>
-            <li> <a href="login.php"><i class="fa fa-user-o" style="width:15px;"></i>
+            <li> <a href="registered.php"><i class="fa fa-user-o" style="width:15px;"></i>
                 Đăng Ký</a></li>
             <li> <a href="login.php"><i class="fa fa-sign-in" style="width:15px;"></i>
                  Đăng Nhập</a></li>

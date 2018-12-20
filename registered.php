@@ -1,3 +1,23 @@
+<?php
+     session_start();
+     if (!isset($_SESSION["dang_nhap_chua"])) 
+     {
+         $_SESSION["dang_nhap_chua"] = 0;
+     }
+
+     require_once './vendor/autoload.php';
+    use Gregwar\Captcha\CaptchaBuilder;
+
+    if (isset($_POST["btnRegister"])) 
+    {
+	    $input = $_POST["txtUserInput"];
+        if ($input == $_SESSION["captcha"]) 
+        {
+
+	    }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,196 +63,165 @@
 
 
     <div class="register container  ">
-        <div class="row text-center">
+        <div class="row text-left">
             <div class="col-sm-6 col-sm-offset-3 form">
-                <form action="#" method="post">
-                    <h1>ĐĂNG KÝ</h1>
-                    <br><br>
-                    <div class="form-group text-left">
-                        <label class="control-label " for="username">
-                            Username
-                        </label>
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                <span class="fa fa-user"></span>
-                            </div>
-                            <input class="form-control" id="username" name="username" placeholder="Nhập Username" type="text" />
-                        </div>
-                    </div>
-                    <div class="form-group text-left">
-                        <label class="control-label " for="Password">
-                            Password
-                        </label>
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                <span class="fa fa-lock"></span>
-                            </div>
-                            <input class="form-control" id="password" name="password" placeholder="Nhập Password" type="password" />
-                        </div>
-                    </div>
-                    <div class="form-group text-left">
-                        <label class="control-label " for="repass">
-                            Nhập Lại Password
-                        </label>
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                <span class="fa fa-lock"></span>
-                            </div>
-                            <input class="form-control" id="repass" name="repass" placeholder="Nhập lại mật khẩu lần nữa"
-                                type="password" />
-                        </div>
-                    </div>
-                    <div class="form-group text-left">
-                        <label class="control-label " for="email">
-                            Email
-                        </label>
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                <span class="fa fa-envelope"></span>
-                            </div>
-                            <input class="form-control" id="email" name="email" placeholder="Email" type="text" />
-                        </div>
-                    </div>
-                    <div class="form-group  text-left">
-                        <label class="col-md-4 control-label">Captcha:</label>
-                        <div class="g-recaptcha" data-sitekey="Add Your Site Key"></div>
-                    </div>
-                    <br>
-                    <div class="form-group  text-left">
-                        <label class="checkbox-inline"><input type="checkbox" requi#999="requi#999"> Tôi đồng ý với <a
-                                href="#">Các Điều Khoản</a> &amp; <a href="#">Chính Sách Bảo Mật</a></label>
-                    </div>
+                <form id="f" action="" method="POST" role="form" onsubmit="return Check()">             
+                    <legend class="text-center">Đăng ký tài khoản</legend>
+				
+					<div class="form-group">
+						<label for="txtUsername">Tên đăng nhập</label>
+						<input type="text" class="form-control" id="txtUsername" name="txtUsername" placeholder="Nhập Username">
+					</div>
+					<div class="form-group">
+						<label for="txtPassword">Mật khẩu</label>
+						<input type="password" class="form-control" id="txtPassword" name="txtPassword" placeholder="Nhập mật khẩu">
+					</div>
+					<div class="form-group">
+						<label for="txtCheck">Xác nhận</label>
+						<input type="password" class="form-control" id="txtCheck" name="txtCheck" placeholder="Nhập lại mật khẩu">
+					</div>
                     <div class="form-group">
-                        <input type="submit" class="btn  btn-block btn-lg" value="Đăng Ký">
-                    </div>
+						<label for="txtEmail">Email</label>
+						<input type="text" class="form-control" id="txtEmail" name="txtEmail" placeholder="abc@gmail.com">
+					</div>
+                    <div class="form-group">
+						<label for="txtUser">Tên Hiển Thị</label>
+						<input type="text" class="form-control" id="txtUser" name="txtUser" placeholder="Nhập tên hiển thị">
+					</div>
+                    <div class="form-group">
+						<label for="txtPhone">Số Điện Thoại </label>
+						<input type="text" class="form-control" id="txtPhone" name="txtPhone"  placeholder="090.....(10 số)">
+					</div>
+                    <div class="form-group">
+						<label for="txtAdd">Địa Chỉ</label>
+						<input type="text" class="form-control" id="txtAdd" name="txtAdd"  placeholder="Nhập địa chỉ">
+					</div>
+					<div class="form-group">
+						<?php
+							$builder = new CaptchaBuilder;
+							$builder->build();
+							$_SESSION["captcha"] = $builder->getPhrase();
+						?>
+						<img src="<?= $builder->inline() ?>" alt="captcha" />
+					</div>
+					<div class="form-group">
+						<label for="txtUserInput">Captcha</label>
+						<input type="text" class="form-control" id="txtUserInput" name="txtUserInput">
+					</div>
+					<button name="btnRegister" type="submit" class="btn btn-block btn-lg">
+						<span class="glyphicon glyphicon-ok"></span>
+						Đăng ký
+					</button>
                 </form>
             </div>
         </div>
     </div><br>
 
     <div class="info">
-        <div class="jumbotron text-left">
-            <div class="row ">
-                <div class="col-sm-3 col-xs-3">
-                    <ul class="diachi">
-                        <p>Liên hệ</p>
-                        <li>
-
-                            <span>123 District 1</span>
-                        </li>
-                        <li>
-
-                            <span> <a href="#">thelast@gmail.com</a></span>
-                        </li>
-                        <li>
-
-                            <i>123 456 789</i>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-sm-3 col-xs-3">
-                    <ul class="thongtin">
-                        <p>Thông tin hỗ trợ</p>
-                        <li>
-                            <a href="#">Giới thiệu</a>
-                        </li>
-                        <li>
-                            <a href="#">Chính sách bản hành</a>
-                        </li>
-                        <li>
-                            <a href="#">Tuyển dụng</a>
-                        </li>
-                        <li>
-                            <a href="#">Mua hàng - thanh toán Online</a>
-                        </li>
-                        <a href="#" class="atm-visa" title="Thẻ Visa">
-                            <img src="img/atm-visa-v/visa.png">
-                        </a>
-                        <a href="#" class="atm-visa" title="Thẻ ZaloPay">
-                            <img src="img/atm-visa-v/zalopay.png">
-                        </a>
-
-                        <a href="#" class="atm-visa" title="Thẻ Vietinbank">
-                            <img src="img/atm-visa-v/vietibank.png">
-                        </a>
-                        <a href="#" class="atm-visa" title="Trả Góp">
-                            <img src="img/atm-visa-v/tragop.png">
-                        </a>
-                    </ul>
-                </div>
-                <div class="col-sm-3 col-xs-3">
-                    <ul class="thongtin">
-                        <p>Danh Mục</p>
-                        <li>
-                            <a href="#">
-                                ĐIỆN THOẠI</a>
-                        </li>
-                        <li>
-                            <a href="#">
-
-                                TABLET
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                PHỤ KIỆN</a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                LAPTOP</a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                ÂM THANH</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-sm-3 col-xs-3">
-                    <ul class="thongtin">
-                        <p>Cá Nhân</p>
-                        <li>
-                            <a href="product.html">
-                                Cửa hàng</a>
-                        </li>
-                        <li>
-                            <a href="cart.html">
-
-                                Giỏ hàng của tôi
-                            </a>
-                        </li>
-                        <li>
-                            <a href="login.html">
-                                Đăng nhập</a>
-                        </li>
-                        <li>
-                            <a href="registered.html">
-                                Đăng Ký Tài Khoản</a>
-                        </li>
-                        <li>
-                            <a href="http://facebook.com"><i class="fa fa-facebook-square" style="font-size:25px"></i></a>
-                            <a href="http://twitter.com"><i class="fa fa-twitter-square" style="font-size:25px"></i></a>
-                            <a href="http://tumblr.com"><i class="fa fa-tumblr-square" style="font-size:25px"></i></a>
-                            <a href="http://instagram.com"><i class="fa fa-instagram" style="font-size:25px"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+       <?php
+            require_once "infor.php";
+        ?>
     </div>
     <!-- kết thúc thẻ thông tin liên hệ -->
 
 
-    <footer class="container-fluid text-center">
-        <p style="color:white">&copy; 2018 MOBILE STORE | Design by team The Last</p>
-    </footer>
-    </div>
-    <script>
-        $('.navbar .dropdown').hover(function () {
-            $(this).find('.dropdown-menu').first().stop(true, true).slideDown(150);
-        }, function () {
-            $(this).find('.dropdown-menu').first().stop(true, true).slideUp(105)
-        });
-    </script>
+    <?php
+        require_once "footer.php";
+    ?>
+    </div>  
+    <script type="text/javascript">
+function Check()
+{
+    var tendangnhap = document.getElementById("txtUsername");
+    if(tendangnhap.value == "")
+    {
+        alert("Tên đăng ký trống!");
+        userName.focus();
+        return false;
+    }
+    var password = document.getElementById("txtPassword");
+    if(password.value == "")
+    {
+        alert("Yêu cầu nhập mật khẩu!");
+        password.focus();
+        return false;
+    }
+    var repass =document.getElementById("txtCheck");
+    if(repass.value =="" || repass.value != password.value)
+    {
+        alert("Xác nhận mật khẩu trống hoặc không khớp");
+        repass.focus();
+        return false;
+    }
+
+    var repass =document.getElementById("txtCheck");
+    if(repass.value =="" || repass.value != password.value)
+    {
+        alert("Xác nhận mật khẩu trống hoặc không khớp");
+        repass.focus();
+        return false;
+    }
+    var email =document.getElementById("txtEmail");
+    if(email.value =="" )
+    {
+        alert("Email đang trống");
+        email.focus();
+        return false;
+    }
+
+    var rex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if(rex.test(email.value) == false)
+    {
+        alert("Email không đúng định dạng");
+        email.focus();
+        return false;
+    }
+    var ten = document.getElementById("txtUser");
+    if(ten.value == "")
+    {
+        alert("Tên hiển thị trống!");
+        ten.focus();
+        return false;
+    }
+
+   
+    var phone = document.getElementById("txtPhone");
+    if(phone.value == "")
+    {
+        alert("Số điện thoại trống!");
+        phone.focus();
+        return false;
+    }
+    var regExp = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+    if(regExp.test(phone.value) == false)
+    {
+        alert("Số điện thoại không đúng định dạng");
+        email.focus();
+        return false;
+    }
+}
+   
+$('#f').on('submit', function (e) {
+			e.preventDefault();
+
+			var form = this;
+
+			var username = $('#txtUsername').val();
+			// if (username.length === 0) {
+			// 	alert('null');
+			// 	return;
+			// }
+
+			var url = 'api/user_check.php?user=' + username;
+			$.getJSON(url, function (data) {
+				if (data === 1) {
+					alert('Tên người dùng đã tồn tại! Vui lòng nhập tên khác');
+				} else {
+					form.submit();
+				}
+			});
+		});
+	</script>
 </body>
 
 </html>

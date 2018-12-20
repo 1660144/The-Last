@@ -30,4 +30,21 @@
         $cn->query($sql);
         
     }
+    function check_login(){
+        $hasil = 0;
+    
+        if (isset($_SESSION['email'])) {
+        $mail = $_SESSION['email'];
+        }
+        if (isset($_SESSION['pass'])) {
+        $pass = $_SESSION['pass'];
+        }
+    
+        if (!empty($mail) and !empty($pass))
+        {
+            $hasil = 1;
+        }
+    
+        return $hasil;
+      }
 ?>

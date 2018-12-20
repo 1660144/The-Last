@@ -80,84 +80,14 @@
             </div>
         </div>
         <div class="menu">
-            <nav class="navbar navbar-inverse">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="index.html">
-                            <i class="fa fa-home" style="font-size:25px"></i>
-                        </a>
-                    </div>
-                    <div class="collapse navbar-collapse" id="myNavbar">
-                        <ul class="nav navbar-nav">
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">ĐIỆN THOẠI
-                                    <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Xem tất cả</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">APPLE</a></li>
-                                    <li><a href="#">SAMSUNG</a></li>
-                                    <li><a href="#">ASUS</a></li>
-                                    <li><a href="#">OPPO</a></li>
-                                    <li><a href="#">HUAWEI</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">TABLET<span
-                                        class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Xem tất cả</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Ipad Pro</a></li>
-                                    <li><a href="#">Ipad 9.7</a></li>
-                                    <li><a href="#">Ipad Air</a></li>
-                                    <li><a href="#">Ipad Mini</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">PHỤ KIỆN<span
-                                        class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Xem tất cả</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Phụ Kiện Iphone,Ipad</a></li>
-                                    <li><a href="#">Sạc Dự Phòng</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">LAPTOP<span
-                                        class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Xem tất cả</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">MACBOOK</a></li>
-                                    <li><a href="#">DELL</a></li>
-                                    <li><a href="#">HP</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">ÂM THANH<span
-                                        class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Xem tất cả</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Loa</a></li>
-                                    <li><a href="#">Tai Nghe</a></li>
-                                    <li><a href="#">Sony</a></li>
-                                    <li><a href="#">Bose</a></li>
-                                    <li><a href="#">Anker</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+            <?php
+                require_once "menu.php";
+            ?>
         </div>
     </div>
     <div class="menu1 ">
         <ul>
-            <li><a href="index.html"><i class="fa fa-home" style="font-size:25px;color:#999"></i></a></li>
+            <li><a href="index.php"><i class="fa fa-home" style="font-size:25px;color:#999"></i></a></li>
             <li>/</li>
             <li>Giỏ Hàng</li>
         </ul>
@@ -210,7 +140,7 @@
                                 19.699.000đ
                             </td>
                             <td>
-                                <intput type="button" class="btn">
+                                <input type="button" class="btn">
                                     <i class="fa fa-trash" style="font-size:20px; color:red"></i>
 
                             </td>
@@ -239,9 +169,9 @@
                                 19.699.000đ
                             </td>
                             <td>
-                                <intput type="button" class="btn">
+                                <input type="button" class="btn">
                                     <i class="fa fa-trash" style="font-size:20px; color:red"></i>
-                                </intput>
+                                </input>
                             </td>
                         </tr>
                     </tbody>
@@ -262,126 +192,15 @@
     </div>
     <hr>
     <div class="info">
-        <div class="jumbotron text-left">
-            <div class="row ">
-                <div class="col-sm-3 col-xs-3">
-                    <ul class="diachi">
-                        <p>Liên hệ</p>
-                        <li>
-
-                            <span>123 District 1</span>
-                        </li>
-                        <li>
-
-                            <span> <a href="#">thelast@gmail.com</a></span>
-                        </li>
-                        <li>
-
-                            <i>123 456 789</i>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-sm-3 col-xs-3">
-                    <ul class="thongtin">
-                        <p>Thông tin hỗ trợ</p>
-                        <li>
-                            <a href="#">Giới thiệu</a>
-                        </li>
-                        <li>
-                            <a href="#">Chính sách bản hành</a>
-                        </li>
-                        <li>
-                            <a href="#">Tuyển dụng</a>
-                        </li>
-                        <li>
-                            <a href="#">Mua hàng - thanh toán Online</a>
-                        </li>
-                        <a href="#" class="atm-visa" title="Thẻ Visa">
-                            <img src="img/atm-visa-v/visa.png">
-                        </a>
-                        <a href="#" class="atm-visa" title="Thẻ ZaloPay">
-                            <img src="img/atm-visa-v/zalopay.png">
-                        </a>
-
-                        <a href="#" class="atm-visa" title="Thẻ Vietinbank">
-                            <img src="img/atm-visa-v/vietibank.png">
-                        </a>
-                        <a href="#" class="atm-visa" title="Trả Góp">
-                            <img src="img/atm-visa-v/tragop.png">
-                        </a>
-                    </ul>
-                </div>
-                <div class="col-sm-3 col-xs-3">
-                    <ul class="thongtin">
-                        <p>Danh Mục</p>
-                        <li>
-                            <a href="#">
-                                ĐIỆN THOẠI</a>
-                        </li>
-                        <li>
-                            <a href="#">
-
-                                TABLET
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                PHỤ KIỆN</a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                LAPTOP</a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                ÂM THANH</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-sm-3 col-xs-3">
-                    <ul class="thongtin">
-                        <p>Cá Nhân</p>
-                        <li>
-                            <a href="product.html">
-                                Cửa hàng</a>
-                        </li>
-                        <li>
-                            <a href="cart.html">
-
-                                Giỏ hàng của tôi
-                            </a>
-                        </li>
-                        <li>
-                            <a href="login.html">
-                                Đăng nhập</a>
-                        </li>
-                        <li>
-                            <a href="registered.html">
-                                Đăng Ký Tài Khoản</a>
-                        </li>
-                        <li>
-                            <a href="http://facebook.com"><i class="fa fa-facebook-square" style="font-size:25px"></i></a>
-                            <a href="http://twitter.com"><i class="fa fa-twitter-square" style="font-size:25px"></i></a>
-                            <a href="http://tumblr.com"><i class="fa fa-tumblr-square" style="font-size:25px"></i></a>
-                            <a href="http://instagram.com"><i class="fa fa-instagram" style="font-size:25px"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        <?php
+            require_once "infor.php";
+        ?>
     </div>
     <!-- kết thúc thẻ thông tin liên hệ -->
-    <footer class="container-fluid text-center">
-        <p style="color:white">&copy; 2018 MOBILE STORE | Design by team The Last</p>
-    </footer>
+    <?php
+        require_once "footer.php";
+    ?>
     </div>
-    <script>
-        $('.navbar .dropdown').hover(function () {
-            $(this).find('.dropdown-menu').first().stop(true, true).slideDown(150);
-        }, function () {
-            $(this).find('.dropdown-menu').first().stop(true, true).slideUp(105)
-        });
-    </script>
 </body>
 
 </html>

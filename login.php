@@ -1,23 +1,32 @@
 <?php
 require_once "./lib/db.php";
     session_start();
-    if (!isset($_SESSION["dang_nhap_chua"])) {
-		$_SESSION["dang_nhap_chua"] = 0;
-	}
-
-
+   
     if(isset($_POST["dangky"]))
     {
-        $username= $_POST["userame"];
+        $username= $_POST["username"];
         $password = $_POST["password"];
-
         $sql = "select * from taikhoan where TenDangNhap = '$username' and MatKhau = '$password'";
         $result = mysqli_query($conn, $sql);      
         $rs = load($sql);
         $num_row = mysqli_num_rows($result);
-
-		if ($num_row > 0) {
+        if(empty($username) )
+        {
+            echo '<script language="javascript">';
+            echo 'alert("Tên đăng nhập trống")';
+            echo '</script>';  
            
+        }  
+        elseif(empty($password))
+        {
+            echo '<script language="javascript">';
+            echo 'alert("Mật khẩu trống")';
+            'this.focus()';
+            echo '</script>';  
+           
+        }  
+        elseif($num_row > 0)      
+        {          
             if($username == "admin")
             {
                 header("Location: ./admin/index.php");
@@ -26,15 +35,14 @@ require_once "./lib/db.php";
             {
                 $_SESSION["current_user"] = $rs->fetch_object();
                 $_SESSION["dang_nhap_chua"] = 1;
-                header("Location: index.php");
+                //header("Location: index.php" );
             }
         } 
         else {
 			echo '<script language="javascript">';
             echo 'alert("Tài khoản không tồn tại! Vui lòng đăng nhập lại")';
-            echo '</script>';
-           
-		}
+            echo '</script>';       
+        } 
     }
 ?>
 
@@ -82,18 +90,18 @@ require_once "./lib/db.php";
     <div class="register container ">
         <div class="row text-center">
             <div class="col-sm-6 col-sm-offset-3 form">
-                <form action="" method="post">
+                <form  method="post">
                     <h1>ĐĂNG NHẬP</h1>
                     <br><br>
                     <div class="form-group text-left">
-                        <label class="control-label " for="email">
+                        <label class="control-label " for="username">
                             Tên Đăng Nhập
                         </label>
                         <div class="input-group">
                             <div class="input-group-addon">
                                 <span class="fa fa-user"></span>
                             </div>
-                            <input class="form-control" id="username" name="userame" placeholder="Nhập Username" type="text" />
+                            <input class="form-control" id="username" name="username" placeholder="Nhập Username" type="text" />
                         </div>
                     </div>
                     <div class="form-group text-left">
@@ -111,7 +119,7 @@ require_once "./lib/db.php";
                         <label class="checkbox-inline "><input type="checkbox" require="require">Remember me</label>
                     </div>
                     <div class="form-group">
-                        <a href="index.php">
+                        <a>
                             <input type="submit" class="btn btn-block btn-lg" name="dangky" value="Đăng Ký">
                         </a>
                     </div>
@@ -132,18 +140,11 @@ require_once "./lib/db.php";
     <!-- kết thúc thẻ thông tin liên hệ -->
 
 
-    <footer class="container-fluid text-center">
-        <p style="color:white">&copy; 2018 MOBILE STORE | Design by team The Last</p>
-    </footer>
+    <?php
+        require_once "footer.php";
+    ?>
     <a href="#" id="toTop" style="display: block;"><span id="toTopHover" style="opacity: 0;"></span>To Top</a>
     </div>
-    <script>
-        $('.navbar .dropdown').hover(function () {
-            $(this).find('.dropdown-menu').first().stop(true, true).slideDown(150);
-        }, function () {
-            $(this).find('.dropdown-menu').first().stop(true, true).slideUp(105)
-        });
-    </script>
 </body>
 
 </html>
