@@ -59,61 +59,50 @@
                         <div class="content">
                             <div class="content-head">
                             <div class="content-content">
-                                <h2>Sản Phẩm</h2>
+                                <h2>Loại Sản Phẩm</h2>
                                 <hr>                      
                                 <table class="table table-striped ">                              
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Tên Sản Phẩm</th>
-                                            <th>Hình Ảnh</th>
-                                            <th>Giá</th>
-                                            <th>Ngày Nhập</th>                                            
-                                            <th>Số lượng bán</th>
-                                            <th>Loại sản phẩm</th>
-                                            <th>Hãng sản xuất</th>
+                                            <th>Tên Loại Sản Phẩm</th>
+                                            <th>Mã Loại</td>                                      
                                             <th></th>
-                                            <th></th>
+                                          
                                     </thead>
                                     <?php
-                                   $sql = "select * from sanpham";
+                                   $sql = "select * from loaisanpham";
                                    $result = mysqli_query($conn, $sql);  
-                                                             
+                                   $i = 0;                
                                    while($row = mysqli_fetch_array($result))
                                    {  
                                 ?>
                                     <tbody>
                                         <tr>
-                                            <td><?=$row["Id"]?></td>
-                                            <td><?=$row["TenSP"]?></td>
-                                            <td><img src="<?=$row["HinhAnh"]?>" style="width:30%;"></td>
-                                            <td><?=$row["Gia"]?></td>
-                                            <td><?=$row["NgayNhap"]?></td>
-                                           
-                                            <td><?=$row["SoLuong"]?></td>
-                                            <td><?=$row["LoaiSP"]?></td>
-                                            <td><?=$row["NhaSanXuatId"]?></td>
+                                            <td><?=$i?></td>
+                                            <td><?=$row["TenLoaiSanPham"]?></td>                                        
+                                            <td><?=$row["MaLoaiSanPham"]?></td>
                                             <td>
-                                                <a class="btn btn-default btn-xs" href="product_edit.php?id=<?=$row["Id"]?>" >
+                                                <a class="btn btn-default btn-xs" href="productbyType_edit.php?id=<?=$row["MaLoaiSanPham"]?>" >
                                                     <i class="fa fa-pencil" aria-hidden="true" style="width:15px;color:blue"></i>
                                                 </a>
-                                            </td>
-                                            <td>
-                                            <a class="btn btn-default btn-xs" href="product_delete.php?id=<?=$row["Id"]?>" >
+                                            
+                                            <a class="btn btn-default btn-xs" href="productbyType_delete.php?id=<?=$row["MaLoaiSanPham"]?>" >
                                                     <i class="fa fa-times" aria-hidden="true" style="width:15px;color:red"></i>
                                                 </a>
                                             </td>
                                           
                                         </tr>
                                     <?php
+                                    $i = $i + 1;
                                     }                               
                                     ?>                                    
                                     </tbody>                      
                                 </table>  
                                 <div class="text-right">
-                                <a type="submit" class="btn btn-success" name="btnAdd" href="product_add.php">
+                                <a type="submit" class="btn btn-success" name="btnAdd" href="productbyType_add.php">
 						            <span class="glyphicon glyphicon-check"></span>
-						                Thêm mới
+						                Thêm loại mới
                                 </a>  
                                 </div>                        
                                 </div>                

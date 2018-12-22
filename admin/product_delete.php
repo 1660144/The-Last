@@ -4,7 +4,9 @@ require_once './lib/db.php';
 
 if (isset($_GET["id"])) {
 	$id = $_GET["id"];
-	$sql = "delete from categories where CatID = $id";
+	$sql = "delete from sanpham where Id = $id";
 	write($sql);
-	header('Location: categories.php');
+	header('Location: product.php');
 }
+
+?>

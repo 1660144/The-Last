@@ -1,5 +1,38 @@
 <?php
     require_once "./lib/db.php";
+	$show_alert = 0;
+	$id = $_GET["id"];
+
+	if (!isset($_GET["id"])) {
+		header('Location: producer.php');
+	}
+
+	if (isset($_POST["btnUpdate"])) {
+		$u_id = $_POST["txtId"];
+		$u_name = $_POST["txtTenL"];
+
+		$u_sql = "update loaisanpham set TenLoaiSanPham = '$u_name' where MaLoaiSanPham = $u_id";
+		write($u_sql);
+		$show_alert = 1;
+	}
+
+	if (isset($_POST["btnDelete"])) {
+		$d_id = $_POST["txtId"];
+		$d_sql = "delete from hangsanxuat where Id = $d_id";
+		write($d_sql);
+		header('Location: producer.php');
+	}
+
+
+	
+	$sql = "SELECT * from loaisanpham  WHERE MaLoaiSanPham = $id";
+	$rs = load($sql);
+	$name = "";
+	while ($row = $rs->fetch_assoc()) {
+		$ml = $row["MaLoaiSanPham"];
+		$tl = $row["TenLoaiSanPham"];
+	}
+
 ?>
 
 <!DOCTYPE html>
@@ -9,9 +42,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Nhà Sản Xuất</title>
     <link rel="stylesheet" href="css/admin.css" type="text/css">
-    
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -20,7 +53,6 @@
         /* .admin-head li{
             list-style: none !important;
         } */
-        
     </style>
 </head>
 
@@ -38,7 +70,7 @@
                 <div class="col-sm-10">
                     <div class="admin-content-content">
                         <div class="head">
-                            <?php require_once "head.php"
+                        <?php require_once "head.php"
                             ?>
                         </div>
                         <!-- kết thúc thẻ head -->
@@ -58,14 +90,45 @@
                         </div>
                         <!-- kết thúc thẻ content -->
                         <div class="content">
-                            <div class="content-head container">
-                                <?php
-                                    require_once "dashboard.php";
+                            <div class="content-head">
+                                <div class="content-content">
+                                <h2>Loại Sản Phẩm</h2>
+                                <hr>                      
+                                <?php 
+                                    if ($show_alert == 1) : 
+                                     
                                 ?>
+					<div class="alert alert-success" role="alert">
+						<strong>Well done!</strong> You successfully read this important alert message.
+					</div>
+					<?php endif; ?>
+					<form method="post" action="" name="frmEdit">
+						<div class="form-group">
+						<label for="txtId">Mã Loại Sản Phẩm</label>
+						<input type="text" class="form-control" id="txtId" name="txtId" readonly value="<?= $ml ?>">
+					</div>
+					<div class="form-group">
+						<label for="txtTenL">Tên Loại Sản Phẩm</label>
+						<input type="text" class="form-control" id="txtTenL" name="txtTenL"  value="<?= $tl ?>">
+					</div>
+					
+					<a class="btn btn-primary" href="productbyType.php" role="button" title="Về thôi">
+						<span class="glyphicon glyphicon-backward"></span>
+					</a>
+					<button type="submit" class="btn btn-success" name="btnUpdate">
+						<span class="glyphicon glyphicon-check"></span>
+						Chỉnh sửa
+					</button>
+					<button type="submit" class="btn btn-danger" name="btnDelete">
+						<span class="glyphicon glyphicon-remove"></span>
+						Xoá luôn
+					</button>
+					</form>
+                                </div>                
                             </div>
-                        </div>
-                    </div>
-                </div>
+                        </div>             
+                    </div>                  
+                </div>              
             </div>
             <!--kết thúc row  -->
         </div>

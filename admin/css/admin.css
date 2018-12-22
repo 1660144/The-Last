@@ -75,8 +75,13 @@
     display: inline-block;
 
 }   
+.head-menu > .dropdown > a{
+    color :white !important;
+}
+
 .head-menu .dropdown a:hover{
     text-decoration: none;
+    color:red !important;
 }
 
 .head-menu > .head-img{
@@ -93,6 +98,7 @@
 }
 .content .content-content{
     background-color: white ;
+    padding: 20px;
 }
 
 .footer{
@@ -101,7 +107,7 @@
 }
 
 .table > thead > tr > th,.table > tbody > tr > td{
-    text-align: center;
+    text-align: left;
 }
 .content-content{
    margin:10px;;

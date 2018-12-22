@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sản Phẩm</title>
+    <title>Nhà Sản Xuất</title>
     <link rel="stylesheet" href="css/admin.css" type="text/css">
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -59,24 +59,19 @@
                         <div class="content">
                             <div class="content-head">
                             <div class="content-content">
-                                <h2>Sản Phẩm</h2>
+                                <h2>Nhà Sản Xuất</h2>
                                 <hr>                      
                                 <table class="table table-striped ">                              
                                     <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>Tên Sản Phẩm</th>
-                                            <th>Hình Ảnh</th>
-                                            <th>Giá</th>
-                                            <th>Ngày Nhập</th>                                            
-                                            <th>Số lượng bán</th>
-                                            <th>Loại sản phẩm</th>
-                                            <th>Hãng sản xuất</th>
+                                           
+                                            <th>Tên Hãng</th>
+                                            <th>Mã Hãng</th>
                                             <th></th>
-                                            <th></th>
+                                            
                                     </thead>
                                     <?php
-                                   $sql = "select * from sanpham";
+                                   $sql = "select * from hangsanxuat";
                                    $result = mysqli_query($conn, $sql);  
                                                              
                                    while($row = mysqli_fetch_array($result))
@@ -84,22 +79,14 @@
                                 ?>
                                     <tbody>
                                         <tr>
-                                            <td><?=$row["Id"]?></td>
-                                            <td><?=$row["TenSP"]?></td>
-                                            <td><img src="<?=$row["HinhAnh"]?>" style="width:30%;"></td>
-                                            <td><?=$row["Gia"]?></td>
-                                            <td><?=$row["NgayNhap"]?></td>
-                                           
-                                            <td><?=$row["SoLuong"]?></td>
-                                            <td><?=$row["LoaiSP"]?></td>
-                                            <td><?=$row["NhaSanXuatId"]?></td>
+                                            <td><?=$row["TenHang"]?></td>
+                                            <td><?=$row["MaHang"]?></td>                                     
                                             <td>
-                                                <a class="btn btn-default btn-xs" href="product_edit.php?id=<?=$row["Id"]?>" >
+                                                <a class="btn btn-default btn-xs" href="producer_edit.php?id=<?=$row["MaHang"]?>" >
                                                     <i class="fa fa-pencil" aria-hidden="true" style="width:15px;color:blue"></i>
                                                 </a>
-                                            </td>
-                                            <td>
-                                            <a class="btn btn-default btn-xs" href="product_delete.php?id=<?=$row["Id"]?>" >
+                                            
+                                            <a class="btn btn-default btn-xs" href="producer_delete.php?id=<?=$row["MaHang"]?>" >
                                                     <i class="fa fa-times" aria-hidden="true" style="width:15px;color:red"></i>
                                                 </a>
                                             </td>
@@ -111,9 +98,9 @@
                                     </tbody>                      
                                 </table>  
                                 <div class="text-right">
-                                <a type="submit" class="btn btn-success" name="btnAdd" href="product_add.php">
+                                <a type="submit" class="btn btn-success" name="btnAdd" href="producer_add.php">
 						            <span class="glyphicon glyphicon-check"></span>
-						                Thêm mới
+						                Thêm hãng mới
                                 </a>  
                                 </div>                        
                                 </div>                

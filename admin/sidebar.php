@@ -20,10 +20,10 @@
                                             <a href="product.php">Sản phẩm</a>
                                         </li>
                                         <li>
-                                            <a href="category.html">Loại sản phẩm</a>
+                                            <a href="productbyType.php">Loại sản phẩm</a>
                                         </li>
                                         <li>
-                                            <a href="producer.html">
+                                            <a href="producer.php">
                                                 Nhà Sản Xuất
                                             </a>
                                         </li>
@@ -31,7 +31,7 @@
                                 </div>
                             </li>
                             <li>
-                                <a href="order.html"><i class="fa fa-shopping-cart" style="font-size:18px"></i>
+                                <a href="order.php"><i class="fa fa-shopping-cart" style="font-size:18px"></i>
                                     Quản lý đơn hàng
                                 </a>
                             </li>

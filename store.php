@@ -216,41 +216,14 @@ ul.cols > li {
 						</li>
 					<?php endfor; ?>
 
-					<!-- <li class="active">
-						<a href="#">
-							1
-							<span class="sr-only">(current)</span>
-						</a>
-					</li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li> -->
+					
 					<li>
 						<a href="#" aria-label="Next">
 							<span aria-hidden="true">»</span>
 						</a>
 					</li>
 				</ul>         
-                    <!-- <nav class="numbering text-right">
-                        <ul class="pagination ">
-                            <li>
-                                <a href="#" aria-label="Previous">
-                                    <span aria-hidden="true">«</span>
-                                </a>
-                            </li>
-                            <li><a href="#">1<span class="sr-only">(current)</span></a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li>
-                                <a href="#" aria-label="Next">
-                                    <span aria-hidden="true">»</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav> -->
+                    
                 </div>
                 <!-- kết thúc thẻ phân trang -->
             </div>
