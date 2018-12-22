@@ -2,7 +2,7 @@
 require_once "./lib/db.php";
     session_start();
    
-    if(isset($_POST["dangky"]))
+    if(isset($_POST["dangnhap"]))
     {
         $username= $_POST["username"];
         $password = $_POST["password"];
@@ -35,7 +35,7 @@ require_once "./lib/db.php";
             {
                 $_SESSION["current_user"] = $rs->fetch_object();
                 $_SESSION["dang_nhap_chua"] = 1;
-                //header("Location: index.php" );
+                header("Location: index.php" );
             }
         } 
         else {
@@ -120,7 +120,7 @@ require_once "./lib/db.php";
                     </div>
                     <div class="form-group">
                         <a>
-                            <input type="submit" class="btn btn-block btn-lg" name="dangky" value="Đăng Ký">
+                            <input type="submit" class="btn btn-block btn-lg" name="dangnhap" value="Đăng Nhập">
                         </a>
                     </div>
                     <div class="form-group text-left">
