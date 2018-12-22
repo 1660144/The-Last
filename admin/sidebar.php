@@ -36,7 +36,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="../index.html"><i class="fa fa-sign-out" style="font-size:18px"></i></i>
+                                <a href="/The-last/index.php"><i class="fa fa-sign-out" style="font-size:18px"></i></i>
                                     Logout
                                 </a>
                             </li>

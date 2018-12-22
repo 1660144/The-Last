@@ -76,10 +76,32 @@
                                             <th></th>
                                     </thead>
                                     <?php
-                                   $sql = "select * from sanpham";
-                                   $result = mysqli_query($conn, $sql);  
-                                                             
-                                   while($row = mysqli_fetch_array($result))
+                                    $limit = 15;       
+                       
+                                    $current_page = 1;
+                                    if (isset($_GET["page"])) {
+                                        $current_page = $_GET["page"];
+                                    }
+            
+                                    $next_page = $current_page + 1;
+                                    $prev_page = $current_page - 1;
+            
+                                    $c_sql = "select count(*) as num_rows from sanpham";
+                                    $c_rs = load($c_sql);
+                                    $c_row = $c_rs->fetch_assoc();
+                                    $num_rows = $c_row["num_rows"];
+                                    $num_pages = ceil($num_rows / $limit);
+            
+                                    if ($current_page < 1 || $current_page > $num_pages) {
+                                        $current_page = 1;
+                                    }
+            
+                                    // $offset = 0;
+                                    $offset = ($current_page - 1) * $limit;
+
+                                    $sql = "SELECT * FROM sanpham  limit $offset, $limit";
+                                    $rs = load($sql);
+                                    while ($row = $rs->fetch_assoc()) 
                                    {  
                                 ?>
                                     <tbody>
@@ -108,8 +130,31 @@
                                     <?php
                                     }                               
                                     ?>                                    
-                                    </tbody>                      
+                                    </tbody>                                               
                                 </table>  
+                                <div class="phantrang text-right">     
+                <ul class="pagination">
+					<li class="disabled">
+						<a href="#" aria-label="Previous">
+							<span aria-hidden="true">«</span>
+						</a>
+					</li>
+					<?php for ($i = 1; $i <= $num_pages; $i++) : ?>
+						<li class="<?php if ($i == $current_page) echo 'active' ?>">
+							<a href="?page=<?= $i ?>"><?= $i ?></a>
+						</li>
+					<?php endfor; ?>
+
+					
+					<li>
+						<a href="#" aria-label="Next">
+							<span aria-hidden="true">»</span>
+						</a>
+					</li>
+				</ul>         
+                    
+                </div>     
+            
                                 <div class="text-right">
                                 <a type="submit" class="btn btn-success" name="btnAdd" href="product_add.php">
 						            <span class="glyphicon glyphicon-check"></span>

@@ -1,3 +1,6 @@
+<?php
+    require_once "./lib/db.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +19,11 @@
         /* .admin-head li{
             list-style: none !important;
         } */
+        option.red {background-color:red}
+        option.blue {background-color:blue}
+        option.white {background-color:white}
+        .important { background-color:yellow; } 
+.sorta-important { background-color:lightyellow; } 
     </style>
 </head>
 
@@ -31,18 +39,9 @@
                 <div class="col-sm-10">
                     <div class="admin-content-content">
                         <div class="head">
-                            <div class="head-menu text-right">
-                                <div class="head-img">
-                                    <img src="img/ava.jpg" style="width: 50px;">
-                                </div>
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin</a>
-                                    <span class="caret"></span>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="../index.html">Logout</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                            <?php
+                            require_once "head.php";
+                            ?>
                         </div>
                         <!-- kết thúc thẻ head -->
                         <div class="menu container-fluid">
@@ -69,37 +68,69 @@
                                         <tr>
                                             <th>#</th>
                                             <th>ID Đặt Hàng</th>
-                                            <th>Tên Khách Hàng</th>
+                                          <!--<th>Tên Khách Hàng</th>-->
                                             <th>Ngày Đặt Hàng</th>
                                             <th>Thành Tiền</th>
                                             <th>Tình Trạng</th>
+                                            <th>Ngày Dự Kiến Giao Hàng</th>
+                                            <th>Loại Giao Hàng</th>
+                                            <th></th>
                                         </tr>
-                                    </thead>
+                                    </thead>                                 
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Samsung Galaxy S6</td>
-                                            <td>12.799.000đ</td>
-                                            <td>14/02/2018</td>
-                                            <td>Samsung galaxy S6 chính hãng</td>
-                                            <td>Samsung galaxy S6 chính hãng</td>
+                                    <?php
+                                        $sql = "select * from dathang order by NgayTao DESC";
+                                        $result = mysqli_query($conn, $sql);
+                                        $i = 0;
+                                        while($row = mysqli_fetch_array($result))
+                                        {
                                             
-                                        </tr>
+                                    ?>
                                         <tr>
-                                            <td>1</td>
-                                            <td>Samsung Galaxy S6</td>
-                                            <td>12.799.000đ</td>
-                                            <td>14/02/2018</td>
-                                            <td>Samsung galaxy S6 chính hãng</td>
-                                            <td>Samsung galaxy S6 chính hãng</td>
-                                        <tr>
-                                                <td>1</td>
-                                                <td>Samsung Galaxy S6</td>
-                                                <td>12.799.000đ</td>
-                                                <td>14/02/2018</td>
-                                                <td>Samsung galaxy S6 chính hãng</td>
-                                                <td>Samsung galaxy S6 chính hãng</td>
+                                            <td><?=$i?></td>
+                                            <td><?=$row["UserId"]?></td>
+                                            <td><?=$row["NgayTao"]?></td>
+                                            <td><?=$row["TongGia"]?></td>
+                                            <td>
+                                                 <?php
+                                                    if($row["TinhTrang"] == 0)
+                                                    {
+                                                ?>                                                 
+                                                    <button type="button" class="btn btn-danger">Chưa Giao</button> 
+                                                <?php
+                                                    }
+                                                    elseif($row["TinhTrang"] == 1)
+                                                    {
+                                                ?>
+                                                        <button type="button" class="btn btn-primary">Giao 1 phần</button> 
+                                              
+                                                 <?php
+                                                    }
+                                                    elseif($row["TinhTrang"] == 2)
+                                                    {
+                                                ?>
+                                                        <button type="button" class="btn btn-success">Đã giao</button> 
+                                                <?php
+                                                    }
+                                                ?>
+                                                   
+                                                </select>                                             
+                                            </td>
+                                            <td><?=$row["NgayDuKienGiaoHang"]?></td>
+                                            <td><?=$row["LoaiGiaoHang"]?></td>
+                                            <td>
+                                                <a class="btn btn-default btn-xs" href="order_edit.php?id=<?=$row["Id"]?>" >
+                                                    <i class="fa fa-pencil" aria-hidden="true" style="width:15px;color:blue"></i>
+                                                </a>      
+                                                <a class="btn btn-default btn-xs" href="order-detail.php?id=<?=$row["Id"]?>">
+                                                    <i class="fa fa-eye" style="color:red"></i>
+                                                </a>           
+                                            </td>
                                         </tr>
+                                        <?php
+                                        $i = $i + 1;
+                                        }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>

@@ -27,7 +27,6 @@
 	
 	$sql = "SELECT * from hangsanxuat join loaisanpham on LoaiSanPham = MaLoaiSanPham  WHERE MaHang = $id";
 	$rs = load($sql);
-	$name = "";
 	while ($row = $rs->fetch_assoc()) {
 		$mh = $row["MaHang"];
 		$th = $row["TenHang"];

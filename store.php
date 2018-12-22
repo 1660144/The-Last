@@ -139,7 +139,7 @@ ul.cols > li {
                                 </ul>                                                     
                         </div>
                     </div>       
-                    <div class="col-sm-9 ">                
+                <div class="col-sm-9 ">                
                     <ul class="cols cols-5 ">
                     <?php            
                         $limit = 15;       
@@ -204,25 +204,25 @@ ul.cols > li {
 
                 <!-- Phân trang -->
                 <div class="phantrang text-right">     
-                <ul class="pagination">
-					<li class="disabled">
-						<a href="#" aria-label="Previous">
-							<span aria-hidden="true">«</span>
-						</a>
-					</li>
-					<?php for ($i = 1; $i <= $num_pages; $i++) : ?>
-						<li class="<?php if ($i == $current_page) echo 'active' ?>">
-							<a href="?page=<?= $i ?>"><?= $i ?></a>
-						</li>
-					<?php endfor; ?>
+                    <ul class="pagination">
+                        <li class="disabled">
+                            <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">«</span>
+                            </a>
+                        </li>
+                        <?php for ($i = 1; $i <= $num_pages; $i++) : ?>
+                            <li class="<?php if ($i == $current_page) echo 'active' ?>">
+                                <a href="?page=<?= $i ?>"><?= $i ?></a>
+                            </li>
+                        <?php endfor; ?>
 
-					
-					<li>
-						<a href="#" aria-label="Next">
-							<span aria-hidden="true">»</span>
-						</a>
-					</li>
-				</ul>         
+                        
+                        <li>
+                            <a href="#" aria-label="Next">
+                                <span aria-hidden="true">»</span>
+                            </a>
+                        </li>
+                    </ul>         
                     
                 </div>
                 <!-- kết thúc thẻ phân trang -->
