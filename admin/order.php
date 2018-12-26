@@ -19,11 +19,7 @@
         /* .admin-head li{
             list-style: none !important;
         } */
-        option.red {background-color:red}
-        option.blue {background-color:blue}
-        option.white {background-color:white}
-        .important { background-color:yellow; } 
-.sorta-important { background-color:lightyellow; } 
+     
     </style>
 </head>
 

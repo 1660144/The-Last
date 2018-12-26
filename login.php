@@ -1,7 +1,7 @@
 <?php
-require_once "./lib/db.php";
+    require_once "./lib/db.php";
     session_start();
-   
+  
     if(isset($_POST["dangnhap"]))
     {
         $username= $_POST["username"];
@@ -54,6 +54,7 @@ require_once "./lib/db.php";
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/page.css" type="text/css">
+    <link rel="shortcut icon"  href="favicon1.ico"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

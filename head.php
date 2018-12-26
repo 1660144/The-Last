@@ -1,5 +1,7 @@
 <?php
-require_once "./lib/db.php";
+    require_once "./lib/db.php";
+   
+    require_once "cart.inc.php";
     
 ?>
 <div class="container-fluid">
@@ -22,7 +24,7 @@ require_once "./lib/db.php";
         {
         ?>
             <li><a href="cart.php"><i class="fa fa-shopping-cart"></i> 
-                 Giỏ hàng</a></li>
+                 Giỏ hàng (<?= get_total_items() ?>)</a></li>
 		    <li class="dropdown">
 		        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b><?= $_SESSION["current_user"]->TenHienThi ?></b> <span class="caret"></span></a>
 			    <ul class="dropdown-menu">

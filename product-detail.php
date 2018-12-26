@@ -1,6 +1,8 @@
 <?php
     require_once "./lib/db.php";
     session_start();
+    require_once "cart.inc.php";
+   
     if (!isset($_SESSION["dang_nhap_chua"])) {
 		$_SESSION["dang_nhap_chua"] = 0;
     }
@@ -9,7 +11,7 @@
     $sql = "Update SanPham Set LuotXem = LuotXem + 1 Where Id=$Id";
     $rs = write($sql);
 
-
+  
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +22,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/page.css" type="text/css">
+    <link rel="shortcut icon"  href="favicon1.ico"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -72,14 +75,14 @@ ul.cols > li {
 
 <body>
     <div class="page ">
-    <div class="head">
-                <?php    
+        <div class="head">
+            <?php    
                 require_once "head.php";
-                ?> 
-            </div>
+            ?> 
+        </div>
 
         <div class="search">
-        <?php
+            <?php
                 require_once "search.php";
             ?> 
         </div>
@@ -87,18 +90,15 @@ ul.cols > li {
             <?php
                 require_once "menu.php";
             ?> 
-     <div class="cart">
-       <?php
-       $id = $_GET["id"];
-       
-        $sql = "SELECT * from sanpham join hangsanxuat on hangsanxuat.MaHang=sanpham.NhaSanXuatId join loaisanpham on loaisanpham.MaLoaiSanPham=sanpham.LoaiSP WHERE sanpham.id=$id";
-        $result  = mysqli_query($conn,$sql);
+        <div class="cart">
+            <?php
+                $id = $_GET["id"];       
+                $sql = "SELECT * from sanpham join hangsanxuat on hangsanxuat.MaHang=sanpham.NhaSanXuatId join loaisanpham on loaisanpham.MaLoaiSanPham=sanpham.LoaiSP WHERE sanpham.id=$id";
+                $result  = mysqli_query($conn,$sql);
         
-        while($row = mysqli_fetch_assoc($result))
-        {
-            
-       ?>
-
+                while($row = mysqli_fetch_assoc($result))
+                {         
+        ?>
         <h3><?php echo $row ["MoTa"];?></h3>
         <hr>
         <div class="row">
@@ -106,6 +106,8 @@ ul.cols > li {
                 <img src="<?=$row["HinhAnh"]?>" class="img-thumbnail" style="width:500px">
             </div>
             <div class="col-sm-7 col-xs-7">
+            
+
                 <table class="table table-borderless">
                     <tr>
                         <td>Giá bán: </td>
@@ -113,7 +115,7 @@ ul.cols > li {
                                 $number = $row["Gia"];
                                 $format_number_1 = number_format($number);
                                 echo $format_number_1 . "đ";
-                         ?></b></b></td>
+                         ?></b></td>
                     </tr>
                     <tr>
                         <td>Số lượt xem:</td>
@@ -135,13 +137,28 @@ ul.cols > li {
                         <td>Loại:</td>
                         <td><?=$row["TenLoaiSanPham"]?></td>
                     </tr>
+                    <?php
+                        if($_SESSION["dang_nhap_chua"] == 1)
+                        {
+                    ?>            
                     <tr>
-                        <td>
-                            <div class="addtocart text-left">
-                                <input type="button" class="btn " value="ADD TO CART">
-                            </div>
+                        <td></td>
+                        <td >
+                        <form method="post" action="cart.php?action=add&id=<?=$row["Id"]?>">
+                            <!--  -->
+                                <div class="input-group ">             
+                                        
+                                    <input type="text" class="form-control" size="1" value="1" name="soluong" id="soluong" > 
+                                    <br><br>
+                                    <input type="submit" class="btn btn-primary" value="Add to cart" name="btnAddItemToCart">             
+                                </div>
+                                
+                
                         </td>
                     </tr>
+                    <?php
+                    }
+                    ?>
                 </table>
             </div>          
         </div>

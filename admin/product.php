@@ -98,7 +98,6 @@
             
                                     // $offset = 0;
                                     $offset = ($current_page - 1) * $limit;
-
                                     $sql = "SELECT * FROM sanpham  limit $offset, $limit";
                                     $rs = load($sql);
                                     while ($row = $rs->fetch_assoc()) 

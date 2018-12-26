@@ -1,6 +1,8 @@
 <?php
+     session_start();
     require_once "./lib/db.php";
-    session_start();
+    require_once "cart.inc.php";
+
     if (!isset($_SESSION["dang_nhap_chua"])) {
 		$_SESSION["dang_nhap_chua"] = 0;
 	}
@@ -16,6 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/page.css" type="text/css">
     <link rel="stylesheet" href="css/bootstrap.im.css" type="text/css">
+    <link rel="shortcut icon"  href="favicon1.ico"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
