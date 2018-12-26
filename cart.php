@@ -1,73 +1,73 @@
 <?php
-	 require_once "./lib/db.php";
-	 session_start();
-	 require_once "cart.inc.php";
-	 $db_handle = new DBController();
-	
-	 
-	 
-      if (!isset($_SESSION["dang_nhap_chua"])) {
-          $_SESSION["dang_nhap_chua"] = 0;
-	  }
-	  if(isset($_POST["btnAddItemToCart"]))
-	  {
-		$id = $_GET["id"];
-		$action = $_GET["action"];
-   
-	  if(!empty($_GET["action"])) 
-	  {
-		switch($action) 
-		{
-			case "add":
-				if(!empty($_POST["soluong"])) 
-				{
-					$productByCode = $db_handle->runQuery("SELECT * FROM sanpham WHERE Id= $id ");
-					$itemArray = array($productByCode[0]["Id"]=>array('Id'=>$productByCode[0]["Id"],'TenSP'=>$productByCode[0]["TenSP"],  'soluong'=>$_POST["soluong"], 'Gia'=>$productByCode[0]["Gia"], 'HinhAnh'=>$productByCode[0]["HinhAnh"]));
-					
-
-					if(!empty($_SESSION["cart_"])) 
-					{
-						if(in_array($productByCode[0]["Id"],array_keys($_SESSION["cart_"]))) 
-						{
-							foreach($_SESSION["cart_"] as $k => $v) 
-							{
-									if($productByCode[0]["Id"] == $k) 
-									{
-										if(empty($_SESSION["cart_"][$k]["soluong"]))
-										{
-											$_SESSION["cart_"][$k]["soluong"] = 0;
-										}
-										$_SESSION["cart_"][$k]["soluong"] += $_POST["soluong"];
-									}
-							}
-						} 
-						else
-						{
-							$_SESSION["cart_"] = array_merge($_SESSION["cart_"],$itemArray);
-						}
-					} else 
-					{
-						$_SESSION["cart_"] = $itemArray;
-					}
-				}
-			break;
-			case "remove":
-				if(!empty($_SESSION["cart_"])) {
-					foreach($_SESSION["cart_"] as $k => $v) 
-					{
-							if($_GET["id"] == $k)
-								unset($_SESSION["cart_"][$k]);				
-							if(empty($_SESSION["cart_"]))
-								unset($_SESSION["cart_"]);
-					}
-				}
-			break;
-			case "empty":
-				unset($_SESSION["cart_"]);
-			break;	
+		require_once "./lib/db.php";
+		session_start();
+		require_once "cart.inc.php";
+		$db_handle = new DBController();
+		
+		
+		
+		if (!isset($_SESSION["dang_nhap_chua"])) {
+			$_SESSION["dang_nhap_chua"] = 0;
 		}
-	}
-}
+	
+		if(!empty($_GET["action"])) 
+		{
+			switch($_GET["action"]) 
+			{
+				case "add":
+					if(!empty($_POST["soluong"])) 
+					{
+						$productByCode = $db_handle->runQuery("SELECT * FROM sanpham WHERE Id= '" . $_GET["id"] . "' ");
+						$itemArray = array($productByCode[0]["Id"]=>array('Id'=>$productByCode[0]["Id"], 'MaSP'=>$productByCode[0]["MaSP"], 'TenSP'=>$productByCode[0]["TenSP"], 'soluong'=>$_POST["soluong"], 'Gia'=>$productByCode[0]["Gia"], 'HinhAnh'=>$productByCode[0]["HinhAnh"]));
+						
+
+						if(!empty($_SESSION["giohang"])) 
+						{
+							if(in_array($productByCode[0]["Id"],array_keys($_SESSION["giohang"]))) 
+							{
+								foreach($_SESSION["giohang"] as $k => $v) 
+								{
+										if($productByCode[0]["Id"] == $k) 
+										{
+											if(empty($_SESSION["giohang"][$k]["soluong"]))
+											{
+												$_SESSION["giohang"][$k]["soluong"] = 0;
+											}
+											$_SESSION["giohang"][$k]["soluong"] += $_POST["soluong"];
+										}
+								}
+							} 
+							else
+							{
+								$_SESSION["giohang"] = array_merge($_SESSION["giohang"],$itemArray);
+							}
+						} else 
+						{
+							$_SESSION["giohang"] = $itemArray;
+						}
+					}
+				break;
+				case "remove":
+					if(!empty($_SESSION["giohang"])) 
+					{
+						
+						foreach($_SESSION["giohang"] as $k => $v) 
+						{
+								echo " " + $k;
+								if($_GET["id"] == $k)
+									unset($_SESSION["giohang"][$k]);	
+								if(empty($_SESSION["giohang"]))
+									unset($_SESSION["giohang"]);
+						}
+					}
+				break;
+				case "empty":
+					unset($_SESSION["giohang"]);
+				break;	
+			}
+		}
+	
+
 ?>
 <html lang="en">
 
@@ -113,10 +113,18 @@
     <div class="cart">
         <p style="font-size:25px">GIỎ HÀNG </p>
         <hr>
+		<?php
+			if($_SESSION["dang_nhap_chua"] == 0)
+			{
+				echo "Bạn chưa đăng nhập! Vui lòng đăng nhập hoặc tạo tài khoản để mua hàng";
+			}
+			else{
+
+		?>
         <div class="row">
             <div class="col-sm-8 col-xs-8 ">
 				<?php
-					if(isset($_SESSION["cart_"])){
+					if(isset($_SESSION["giohang"])){
 						$total_quantity = 0;
 						$total_price = 0;
 				?>	
@@ -133,7 +141,8 @@
 					</thead>
 					<tbody>		
 						<?php
-							foreach ($_SESSION["cart_"] as $item){
+							foreach ($_SESSION["giohang"] as $item)
+							{
 								$item_price = $item["soluong"]*$item["Gia"];
 						?>
 						<tr>
@@ -150,7 +159,7 @@
 									echo $format_number_1 . "đ"; ?>
 									</b>
 							</td>			
-							<td><a href="cart.php?action=remove&id=<?=$item["Id"] ?>" class="btnRemoveAction"><i class="fa fa-trash"></i></a></td>
+							<td><a href="cart.php?action=remove&id=<?=$item["Id"] ?>" class="btnRemoveAction"><i class="fa fa-trash" style="color:red"></i></a></td>
 						</tr>	
 						<?php				
 							$total_quantity += $item["soluong"];
@@ -171,7 +180,7 @@
 				<?php
 						} else {
 						?>
-						<div class="no-records">Your Cart is Empty</div>
+						<div class="no-records">Giỏ hàng của bạn đang trống</div>
 						<?php 
 						}
 						?>
@@ -179,6 +188,9 @@
             </div>
 			<!-- kết thúc row -->
         </div>
+		<?php
+			}
+		?>
     </div>
     </div>
     <hr>
