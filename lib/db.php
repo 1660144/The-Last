@@ -32,5 +32,21 @@ mysqli_query($conn, "Set NAMES 'utf8'");
         $cn->query($sql);
         
     }
+    function runQuery($query) {
+        $cn = new mysqli(HOST, UID, PWD, DB);
+        $result = mysqli_query($cn,$query);
+        while($row=mysqli_fetch_assoc($result)) {
+            $resultset[] = $row;
+        }		
+        if(!empty($resultset))
+            return $resultset;
+    }
+    
+	function numRows($query) {
+		$result  = mysqli_query($conn,$query);
+		$rowcount = mysqli_num_rows($result);
+		return $rowcount;	
+	}
+
    
 ?>

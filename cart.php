@@ -1,10 +1,7 @@
 <?php
-		require_once "./lib/db.php";
 		session_start();
+		require_once "./lib/db.php";
 		require_once "cart.inc.php";
-		$db_handle = new DBController();
-		
-		
 		
 		if (!isset($_SESSION["dang_nhap_chua"])) {
 			$_SESSION["dang_nhap_chua"] = 0;
@@ -17,10 +14,10 @@
 				case "add":
 					if(!empty($_POST["soluong"])) 
 					{
-						$productByCode = $db_handle->runQuery("SELECT * FROM sanpham WHERE Id= '" . $_GET["id"] . "' ");
+						$productByCode = runQuery("SELECT * FROM sanpham WHERE Id= '" . $_GET["id"] . "' ");
+						
 						$itemArray = array($productByCode[0]["Id"]=>array('Id'=>$productByCode[0]["Id"], 'MaSP'=>$productByCode[0]["MaSP"], 'TenSP'=>$productByCode[0]["TenSP"], 'soluong'=>$_POST["soluong"], 'Gia'=>$productByCode[0]["Gia"], 'HinhAnh'=>$productByCode[0]["HinhAnh"]));
 						
-
 						if(!empty($_SESSION["giohang"])) 
 						{
 							if(in_array($productByCode[0]["Id"],array_keys($_SESSION["giohang"]))) 
@@ -53,7 +50,7 @@
 						
 						foreach($_SESSION["giohang"] as $k => $v) 
 						{
-								echo " " + $k;
+								
 								if($_GET["id"] == $k)
 									unset($_SESSION["giohang"][$k]);	
 								if(empty($_SESSION["giohang"]))
@@ -62,7 +59,11 @@
 					}
 				break;
 				case "empty":
+				{
 					unset($_SESSION["giohang"]);
+					//header("Location: index.php" );
+					
+				}
 				break;	
 			}
 		}
@@ -165,15 +166,20 @@
 							$total_quantity += $item["soluong"];
 							$total_price += ($item["Gia"]*$item["soluong"]);
 						}
-						?>
-					
+						?>				
 						<tr>
-								<td colspan="2" align="right">Total:</td>
-								<td align="right"><?php echo $total_quantity; ?></td>
-								<td align="right" colspan="2"><strong><?php echo "$ ".number_format($total_price, 2); ?></strong></td>
-								<td></td>
+							<td colspan="2" align="right">Total:</td>
+							<td align="right"><?php echo $total_quantity; ?></td>
+							<td align="right" colspan="2"><strong><?php echo number_format($total_price) . "đ"; ?></strong></td>
+							<td></td>
 						</tr>
-							
+						<tr>
+							<td colspan="6" align="right">
+								<a href="cart.php?action=empty">
+									<input type="button" class="btn btn-danger" value="Xóa giỏ hàng">
+								</a>
+							</td>
+						</tr>						
 						</div>
 					</tbody>
                 </table>
@@ -192,7 +198,9 @@
 			}
 		?>
     </div>
+	
     </div>
+	
     <hr>
     <div class="info">
         <?php
