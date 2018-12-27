@@ -16,7 +16,7 @@
             <li> <a href="login.php"><i class="fa fa-sign-in" style="width:15px;"></i>
                  Đăng Nhập</a></li>
             <li><a href="cart.php"><i class="fa fa-shopping-cart"></i>
-                     Giỏ hàng</a></li>
+                    Giỏ hàng</a></li>
 		
         <?php
         }
@@ -28,7 +28,7 @@
 		    <li class="dropdown">
 		        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b><?= $_SESSION["current_user"]->TenHienThi ?></b> <span class="caret"></span></a>
 			    <ul class="dropdown-menu">
-				    <li><a href="#">Thông tin cá nhân</a></li>
+				    <li><a href="personal.php?name=<?= $_SESSION["current_user"]->TenHienThi ?>">Thông tin cá nhân</a></li>
 				    <li><a href="#">Đổi mật khẩu</a></li>
 				    <li role="separator" class="divider"></li>
 				    <li><a href="logout.php">Thoát</a></li>

@@ -100,7 +100,7 @@
   
     padding-top: 5px !important;
     font-size: 20px;
-    color:white;
+    
 }
 
 .sanpham .danhmuc a{
@@ -316,6 +316,27 @@ footer {
 
 .sanphammoinhat li a:hover{
     text-decoration: none;
+}
+.personal-infor{
+    min-height: 350px;
+    padding:10px;
+}
+.personal-infor li{
+    list-style: none;
+    padding:10px;
+}
+.personal-infor img{
+    border-radius: 80px;
+}
+.personal-infor a{
+    color:#999;
+}
+
+.personal-infor a:hover{
+    text-decoration: none;
+}
+.personal-infor ul{
+    border:1px solid #999;
 }
 
 

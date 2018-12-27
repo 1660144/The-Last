@@ -29,7 +29,7 @@
         {
         ?>
         <li>
-         <a href="productbyProcuder.php?id=<?=$row1["MaHang"]?>"><i class="fa fa-angle-right"></i>
+         <a href="productbyProducer.php?id=<?=$row1["MaHang"]?>"><i class="fa fa-angle-right"></i>
          <?=$row1["TenHang"]?>
         </a>
         </li>
@@ -40,13 +40,13 @@
 </div>
 <br><br>
 <div class="timkiemtheogia">
-<p>Gía sản phẩm</p> 
+<p>Chọn mức giá</p> 
     
         <ul>
-            <li>100.000đ -- 100.000đ</li>
-            <li>1.000.000đ -- 5.000.000đ</li>
-            <li>5.000.000đ -- 10.000.000đ</li>
-            <li>5.000.000đ -- 10.000.000đ</li>
+            <li><a href="productbyPrice.php?price=1">100.000đ -- 1.000.000đ</a></li>
+            <li><a href="productbyPrice.php?price=2">1.000.000đ -- 5.000.000đ</li>
+            <li><a href="productbyPrice.php?price=3">5.000.000đ -- 10.000.000đ</li>
+            <li><a href="productbyPrice.php?price=4">10.000.000đ -- 20.000.000đ</li>
         </ul>
   
 </div>

@@ -16,7 +16,7 @@
 					{
 						$productByCode = runQuery("SELECT * FROM sanpham WHERE Id= '" . $_GET["id"] . "' ");
 						
-						$itemArray = array($productByCode[0]["Id"]=>array('Id'=>$productByCode[0]["Id"], 'MaSP'=>$productByCode[0]["MaSP"], 'TenSP'=>$productByCode[0]["TenSP"], 'soluong'=>$_POST["soluong"], 'Gia'=>$productByCode[0]["Gia"], 'HinhAnh'=>$productByCode[0]["HinhAnh"]));
+						$itemArray = array($productByCode[0]["Id"]=>array('MaSP'=>$productByCode[0]["MaSP"], 'Id'=>$productByCode[0]["Id"], 'TenSP'=>$productByCode[0]["TenSP"], 'soluong'=>$_POST["soluong"], 'Gia'=>$productByCode[0]["Gia"], 'HinhAnh'=>$productByCode[0]["HinhAnh"]));
 						
 						if(!empty($_SESSION["giohang"])) 
 						{
@@ -46,11 +46,12 @@
 				break;
 				case "remove":
 					if(!empty($_SESSION["giohang"])) 
-					{
-						
+					{	
+						$id = $_GET["id"];
+						echo $id;		
 						foreach($_SESSION["giohang"] as $k => $v) 
-						{
-								
+						{					
+							echo $k;
 								if($_GET["id"] == $k)
 									unset($_SESSION["giohang"][$k]);	
 								if(empty($_SESSION["giohang"]))
@@ -61,11 +62,39 @@
 				case "empty":
 				{
 					unset($_SESSION["giohang"]);
-					//header("Location: index.php" );
+					header("Location: index.php" );
 					
 				}
 				break;	
 			}
+		}
+
+		if (isset($_POST["btnCheckOut"])) {
+			$o_Total = $_POST["txtTotal"];
+			$o_Ten= $_SESSION["current_user"]->MaTaiKhoan;
+			$o_OrderDate = strtotime("+7 hours", time());
+			$str_OrderDate = date("Y-m-d H:i:s", $o_OrderDate);
+			echo $o_Total . " " .$o_Ten . " " .$o_OrderDate . " " .$str_OrderDate;
+			$sql = "insert into dathang(UserId, TongGia, NgayTao) values($o_Ten, $o_Total,'$str_OrderDate')";
+			$o_ID = write($sql);
+	
+			//
+			// order_details
+	
+			// foreach ($_SESSION["cart"] as $proId => $q) {
+			// 	$sql = "select * from products where ProID = $proId";
+			// 	$rs = load($sql);
+			// 	$row = $rs->fetch_assoc();
+			// 	$price = $row["Price"];
+			// 	$amount = $q * $price;
+			// 	$d_sql = "insert into orderdetails(OrderID, ProID, Quantity, Price, Amount) values($o_ID, $proId, $q, $price, $amount)";
+			// 	write($d_sql);
+			// }
+	
+			//
+			// clear cart
+			
+			$_SESSION["giohang"] = array();
 		}
 	
 
@@ -182,6 +211,23 @@
 						</tr>						
 						</div>
 					</tbody>
+					<tfoot>
+						<td colspan="4">
+							<a class="btn btn-success" href="index.php" role="button">
+								<span class="glyphicon glyphicon-backward"></span>
+									Tiếp tục mua hàng
+							</a>
+						</td>
+						<td>
+							<form method="POST" action="">
+								<input type="hidden" name="txtTotal" value="<?php echo $total_price;?>">
+									<button name="btnCheckOut" type="submit" class="btn btn-primary">
+										<span class="glyphicon glyphicon-bell"></span>
+										Thanh toán
+									</button>
+							</form>
+						</td>
+					</tfoot>
                 </table>
 				<?php
 						} else {

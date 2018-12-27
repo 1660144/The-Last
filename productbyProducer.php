@@ -96,52 +96,9 @@ ul.cols > li {
                 <div class="row ">
                     <div class="col-sm-3 text-left">
                         <div class="danhmuc">
-                            <p>Loại Sản Phẩm</p>                   
-                            <ul>
-                                <?php 
-                                     $sql ="SELECT * from loaisanpham";
-                                     $result = mysqli_query($conn, $sql);
-                                     while($row = mysqli_fetch_array($result))
-                                     {
-                                         $id = $row["MaLoaiSanPham"];
-                                         
-                                ?>
-                                <li><a href="productbyCat.php?idlsp=<?php echo $id;?>">
-                                <?=$row["TenLoaiSanPham"]?>
-                                
-                            </a></li>  
                             <?php
-                                 }
-                                 ?>                      
-                            </ul>                                                       
-                        </div>
-                        <div class="danhmuc">
-                            <p>Hãng Sản Xuất</p>                   
-                            <ul>
-                                    <?php
-                                        $sql1 = "select * from hangsanxuat";
-                                        $result1 = mysqli_query($conn, $sql1);
-                                        while($row1 = mysqli_fetch_assoc($result1))
-                                        {
-                                    ?>
-                                    <li>
-                                        <a href="productbyProducer.php?id=<?=$row1["MaHang"]?>"><i class="fa fa-angle-right"></i>
-                                            <?=$row1["TenHang"]?>
-                                        </a>
-                                    </li>
-                                    <?php
-                                        }
-                                    ?>
-                                    <!-- <li><a href="#"><i class="fa fa-angle-right"></i>
-                                            SamSung</a></li>
-                                    <li><a href="#"><i class="fa fa-angle-right"></i>
-                                            Asus</a></li>
-                                    <li><a href="#"><i class="fa fa-angle-right"></i>
-                                            Oppo</a></li>
-                                    <li><a href="#"><i class="fa fa-angle-right"></i>
-                                            Huawei</a></li> -->
-
-                                </ul>                                                     
+                                require_once "product_sidebar.php";
+                            ?>                                                     
                         </div>
                     </div>
 
